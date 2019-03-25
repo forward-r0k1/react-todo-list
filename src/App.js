@@ -6,25 +6,35 @@ import TodoList from "./components/TodoList";
 
 class App extends Component {
   state = {
-    items: [
-      {
-        id: 1,
-        title: "wake up"
-      },
-      {
-        id: 2,
-        title: "go sleep"
-      }
-    ],
+    items: [],
     id: uuid(),
     item: "",
     editItem: false
   };
-  chandleChange = e => {
-    console.log(e);
+  handleChange = e => {
+    // console.log(e.target.value);
+    //change input value
+    this.setState({
+      item: e.target.value
+    });
   };
-  chandleSubmit = e => {
-    console.log("changle submit");
+  handleSubmit = e => {
+    //stop refreshing the browser after clicking submit button
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item
+    };
+    const updatedItems = [...this.state.items, newItem];
+    this.setState(
+      {
+        items: updatedItems,
+        item: "",
+        id: uuid(),
+        editItem: false
+      },
+      () => console.log(this.state)
+    );
   };
   clearList = () => {
     console.log("clearing");
@@ -37,6 +47,7 @@ class App extends Component {
   };
   render() {
     // console.log(this.state);
+
     return (
       <div className="container">
         <div className="row">
@@ -45,8 +56,8 @@ class App extends Component {
 
             <TodoInput
               item={this.state.item}
-              handleChange={this.chandleChange}
-              handleSubmit={this.chandleSubmit}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
               editItem={this.state.editItem}
             />
 
