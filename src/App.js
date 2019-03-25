@@ -13,16 +13,37 @@ class App extends Component {
     editItem: false
   };
   handleChange = e => {
+    setTimeout(() => {
+      var bg = document.getElementById("submit-autho");
+      if (
+        this.state.editItem === false &&
+        this.state.item.length > 0 &&
+        this.state.item[this.state.item.length - 1] !== " "
+      ) {
+        bg.style.backgroundColor = "#007bff";
+      } else if (this.state.editItem === false) {
+        bg.style.backgroundColor = "rgba(0, 123, 255, 0.3)";
+      }
+    }, 100);
+
     // console.log(e.target.value);
     //change input value
-    this.setState({
+    return this.setState({
       item: e.target.value
     });
   };
   handleSubmit = e => {
     //stop refreshing the browser after clicking submit button
     e.preventDefault();
-    if (this.state.item.length > 0) {
+
+    var bg = document.getElementById("submit-autho");
+    bg.style.backgroundColor = "rgba(0, 123, 255, 0.3)";
+
+    if (
+      this.state.item.length > 0
+      // &&
+      // this.state.item[this.state.item.length - 1] !== " "
+    ) {
       const newItem = {
         id: this.state.id,
         title: this.state.item
@@ -49,8 +70,21 @@ class App extends Component {
       items: filteredItems
     });
   };
+
   handleEdit = id => {
-    console.log(`handle edit ${id}`);
+    var bg = document.getElementById("submit-autho");
+    bg.style.backgroundColor = "green";
+    //display list that not having the item
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+    //select single item to edit
+    const selectedItem = this.state.items.find(item => item.id === id);
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.title,
+      //keep (in state) the same id passed in handleEdit method
+      id: id,
+      editItem: true
+    });
   };
   render() {
     // console.log(this.state);

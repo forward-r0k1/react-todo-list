@@ -15,3 +15,9 @@ div .card.card-body {
 .list-group-item {
   color: #333;
 }
+button#submit-autho {
+  background-color: rgba(0, 123, 255, 0.3);
+}
+button.editbutton {
+  background-color: green;
+}
