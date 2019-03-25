@@ -13,6 +13,7 @@ export default class TodoInput extends Component {
                 <i className="fas fa-book text-white" />
               </div>
             </div>
+            {/* input value set to this.props.item on change*/}
             <input
               type="text"
               className="form-control text-capitalize"

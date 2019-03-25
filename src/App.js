@@ -3,6 +3,7 @@ import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
+import "./app.css";
 
 class App extends Component {
   state = {
@@ -37,7 +38,9 @@ class App extends Component {
     );
   };
   clearList = () => {
-    console.log("clearing");
+    this.setState({
+      items: []
+    });
   };
   handleDelete = id => {
     console.log(`handle e delete ${id}`);
