@@ -1,4 +1,17 @@
+* {
+  font-size: 20px;
+}
+h3 {
+  font-size: 2rem;
+}
 body {
   background: #333;
-  color: white;
+  color: #ffffff;
+}
+div .card.card-body {
+  background-color: #666;
+  border: grey 4px dashed;
+}
+.list-group-item {
+  color: #333;
 }

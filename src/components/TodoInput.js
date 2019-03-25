@@ -22,7 +22,10 @@ export default class TodoInput extends Component {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-block btn-primary mt-3">
+          <button
+            type="submit"
+            className="btn btn-block btn-primary mt-3 submit"
+          >
             submit me
           </button>
         </form>

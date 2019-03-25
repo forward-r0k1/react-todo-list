@@ -22,20 +22,20 @@ class App extends Component {
   handleSubmit = e => {
     //stop refreshing the browser after clicking submit button
     e.preventDefault();
-    const newItem = {
-      id: this.state.id,
-      title: this.state.item
-    };
-    const updatedItems = [...this.state.items, newItem];
-    this.setState(
-      {
+    if (this.state.item.length > 0) {
+      const newItem = {
+        id: this.state.id,
+        title: this.state.item
+      };
+      const updatedItems = [...this.state.items, newItem];
+      this.setState({
         items: updatedItems,
         item: "",
         id: uuid(),
         editItem: false
-      },
-      () => console.log(this.state)
-    );
+      });
+    }
+    // else do something
   };
   clearList = () => {
     this.setState({
@@ -43,10 +43,14 @@ class App extends Component {
     });
   };
   handleDelete = id => {
-    console.log(`handle e delete ${id}`);
+    // only display items that dont have this id
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+    this.setState({
+      items: filteredItems
+    });
   };
   handleEdit = id => {
-    console.log(`handle eedit ${id}`);
+    console.log(`handle edit ${id}`);
   };
   render() {
     // console.log(this.state);
